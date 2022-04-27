@@ -1,9 +1,15 @@
-# -*- coding: utf-8 -*-
-from flask import render_template
 from app import app
+from app.forms import *
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Ekaterina'}
-    return render_template('index.html', title='Home', user=user)
+    return render_hello_world()
+
+@app.route('/users/<username>')
+def user(username):
+    return show_user_profile(username)
+
+@app.route('/users/<username>/url')
+def redirect_user(username):
+    return redirect_page(username)
